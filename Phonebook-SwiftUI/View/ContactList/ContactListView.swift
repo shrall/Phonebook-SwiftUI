@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContactListView: View {
+    @State var present = true
     var body: some View {
         VStack {
             List {
@@ -22,13 +23,14 @@ struct ContactListView: View {
                     }
                 }.headerProminence(.increased)
             }.listStyle(.insetGrouped)
-        }.navigationTitle("Contacts")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Text("Add")
-                }
+        }
+        .navigationTitle("Contacts")
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Text("Add")
             }
+        }
     }
 }
 
