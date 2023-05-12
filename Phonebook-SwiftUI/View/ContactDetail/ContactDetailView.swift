@@ -8,24 +8,29 @@
 import SwiftUI
 
 struct ContactDetailView: View {
+    var name: String
+    var phone: String
+    var emoji: String
+    var email: String?
+    var website: String?
+    var notes: String?
+
     var body: some View {
         VStack {
             ZStack {
                 Circle()
                     .fill(.secondary.opacity(0.2))
                     .frame(width: 120, height: 120)
-                Text("🧁")
+                Text(emoji)
                     .font(.system(size: 60))
             }
-            Text("John Doe")
+            Text(name)
                 .font(.system(size: 32))
-            Text("0812312312")
+            Text(phone)
                 .font(.system(size: 16))
                 .foregroundColor(.secondary)
             HStack(spacing: 24) {
-                Button {
-                    // TODO: SMS
-                } label: {
+                Link(destination: URL(string: "sms:\(phone)")!){
                     ZStack {
                         Circle()
                             .fill(.secondary.opacity(0.2))
@@ -36,9 +41,7 @@ struct ContactDetailView: View {
                             .frame(width: 24)
                     }
                 }
-                Button {
-                    // TODO: Call
-                } label: {
+                Link(destination: URL(string: "tel:\(phone)")!){
                     ZStack {
                         Circle()
                             .fill(.secondary.opacity(0.2))
@@ -56,43 +59,46 @@ struct ContactDetailView: View {
                         Text("E-Mail")
                             .foregroundColor(.secondary)
                             .font(.system(size: 16))
-                        Text("johndoe@phonebook.com")
-                            .font(.system(size: 18))
+                        if let email = email, email != "" {
+                            Link(email, destination: URL(string: "mailto:\(email)")!).font(.system(size: 18))
+                        } else {
+                            Text("-")
+                                .font(.system(size: 18))
+                        }
                     }
                     Spacer()
-                    Button {
-                        // TODO: E-Mail
-                    } label: {
-                        Image(systemName: "envelope")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 24)
-                    }
+                    Image(systemName: "envelope")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24)
+                        .foregroundColor(email == "" ? .secondary : .primary)
                 }
                 HStack(alignment: .center) {
                     VStack(alignment: .leading) {
                         Text("Website")
                             .foregroundColor(.secondary)
                             .font(.system(size: 16))
-                        Text("johndoe.design")
-                            .font(.system(size: 18))
+                        if let website = website, website != "" {
+                            Link(website, destination: URL(string: website)!).font(.system(size: 18))
+                        } else {
+                            Text("-")
+                                .font(.system(size: 18))
+                        }
                     }
                     Spacer()
-                    Button {
-                        // TODO: WebView
-                    } label: {
-                        Image(systemName: "globe")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 24)
-                    }
+                    Image(systemName: "globe")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 24)
+                        .foregroundColor(website == "" ? .secondary : .primary)
                 }
                 HStack(alignment: .center) {
                     VStack(alignment: .leading) {
                         Text("Notes")
                             .foregroundColor(.secondary)
                             .font(.system(size: 16))
-                        Text("This guy is a bit weird?!")
+                        Text((notes == "" ? "-" : notes)!)
+                            .multilineTextAlignment(.leading)
                             .font(.system(size: 18))
                     }
                     Spacer()
@@ -110,6 +116,6 @@ struct ContactDetailView: View {
 
 struct ContactDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ContactDetailView()
+        ContactDetailView(name: "Marshall", phone: "08123123123", emoji: "😎")
     }
 }

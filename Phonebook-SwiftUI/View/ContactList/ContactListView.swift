@@ -15,7 +15,7 @@ struct ContactListView: View {
                 ForEach(contactListVM.contacts.keys.sorted(), id: \.self) { key in
                     Section(header: Text(key)) {
                         ForEach(contactListVM.contacts[key]!, id: \.self) { contact in
-                            NavigationLink(destination: ContactDetailView()) {
+                            NavigationLink(destination: ContactDetailView(name: contact.name!, phone: contact.phone!, emoji: contact.profileEmoji!, email: contact.email, website: contact.website, notes: contact.notes)) {
                                 ContactRow(name: contact.name!, emoji: contact.profileEmoji!, phone: contact.phone!)
                             }
                         }
