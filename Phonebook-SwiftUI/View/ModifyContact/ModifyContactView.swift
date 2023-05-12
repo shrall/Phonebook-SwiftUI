@@ -61,6 +61,8 @@ struct ModifyContactView: View {
                     } label: {
                         Text("Save")
                     }
+                    .disabled(!contactListVM.validateFormField())
+                    .foregroundColor(!contactListVM.validateFormField() ? .secondary : .accentColor)
                 }
             }
             .sheet(isPresented: $contactListVM.showEmojiPicker) {
