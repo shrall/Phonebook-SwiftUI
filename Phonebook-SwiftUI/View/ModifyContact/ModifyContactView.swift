@@ -8,24 +8,19 @@
 import SwiftUI
 
 struct ModifyContactView: View {
-    @State private var emoji = "😎"
-    @State private var name = ""
-    @State private var phone = ""
-    @State private var email = ""
-    @State private var website = ""
-    @State private var note = ""
-    @State private var showEmojiPicker = false
+    @EnvironmentObject var contactListVM: ContactListViewModel
+    
     var body: some View {
         NavigationView {
             VStack(spacing: 8) {
                 Button {
-                    showEmojiPicker = true
+                    contactListVM.showEmojiPicker = true
                 } label: {
                     ZStack {
                         Circle()
                             .fill(.gray.opacity(0.2))
                             .frame(width: 120, height: 120)
-                        Text(emoji)
+                        Text(contactListVM.profileEmoji)
                             .font(.system(size: 60))
                     }
                 }
@@ -41,17 +36,17 @@ struct ModifyContactView: View {
                 }
                 List {
                     Section{
-                        TextField("Name", text: $name)
-                        TextField("Phone", text: $phone)
+                        TextField("Name", text: $contactListVM.name)
+                        TextField("Phone", text: $contactListVM.phone)
                             .keyboardType(.decimalPad)
-                        TextField("E-mail", text: $email)
-                        TextField("Website", text: $website)
+                        TextField("E-mail", text: $contactListVM.email)
+                        TextField("Website", text: $contactListVM.website)
                     }
                     Section{
                         VStack(alignment: .leading){
                             Text("Notes")
                                 .foregroundColor(.secondary)
-                            TextField("", text: $note, axis: .vertical)
+                            TextField("", text: $contactListVM.notes, axis: .vertical)
                         }
                     }
                 }
@@ -62,14 +57,14 @@ struct ModifyContactView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        // TODO: Save
+                        contactListVM.addContact()
                     } label: {
                         Text("Save")
                     }
                 }
             }
-            .sheet(isPresented: $showEmojiPicker) {
-                EmojiPicker(selectedEmoji: $emoji, dismiss: { showEmojiPicker.toggle() })
+            .sheet(isPresented: $contactListVM.showEmojiPicker) {
+                EmojiPicker(selectedEmoji: $contactListVM.profileEmoji, dismiss: { contactListVM.showEmojiPicker.toggle() })
             }
         }
     }

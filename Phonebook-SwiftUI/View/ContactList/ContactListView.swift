@@ -8,20 +8,19 @@
 import SwiftUI
 
 struct ContactListView: View {
-    @State var presentContactForm = false
+    @StateObject var contactListVM = ContactListViewModel()
     var body: some View {
         VStack {
             List {
-                Section(header: Text("J")) {
-                    NavigationLink(destination: ContactDetailView()) {
-                        ContactRow(name: "John Doe", emoji: "🧁", phone: "08214581283")
-                    }
-                }.headerProminence(.increased)
-                Section(header: Text("K")) {
-                    NavigationLink(destination: ContactDetailView()) {
-                        ContactRow(name: "Kohn Doe", emoji: "💋", phone: "08214581283")
-                    }
-                }.headerProminence(.increased)
+                ForEach(contactListVM.contacts.keys.sorted(), id: \.self) { key in
+                    Section(header: Text(key)) {
+                        ForEach(contactListVM.contacts[key]!, id: \.self) { contact in
+                            NavigationLink(destination: ContactDetailView()) {
+                                ContactRow(name: contact.name!, emoji: contact.profileEmoji!, phone: contact.phone!)
+                            }
+                        }
+                    }.headerProminence(.increased)
+                }
             }.listStyle(.insetGrouped)
         }
         .navigationTitle("Contacts")
@@ -29,14 +28,15 @@ struct ContactListView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    presentContactForm = true
+                    contactListVM.presentContactForm = true
                 } label: {
                     Image(systemName: "plus")
                 }
             }
         }
-        .sheet(isPresented: $presentContactForm){
+        .sheet(isPresented: $contactListVM.presentContactForm) {
             ModifyContactView()
+                .environmentObject(contactListVM)
         }
     }
 }

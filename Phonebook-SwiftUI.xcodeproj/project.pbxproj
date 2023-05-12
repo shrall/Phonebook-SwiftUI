@@ -12,11 +12,13 @@
 		10B98A9D2A0DFB350045B8B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10B98A9C2A0DFB350045B8B6 /* Assets.xcassets */; };
 		10B98AA02A0DFB350045B8B6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10B98A9F2A0DFB350045B8B6 /* Preview Assets.xcassets */; };
 		10B98AAC2A0DFD1E0045B8B6 /* ContactListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B98AAB2A0DFD1E0045B8B6 /* ContactListView.swift */; };
-		10B98AAE2A0DFF430045B8B6 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B98AAD2A0DFF430045B8B6 /* Contact.swift */; };
 		10B98AB42A0E018C0045B8B6 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B98AB32A0E018C0045B8B6 /* ContactRow.swift */; };
 		10B98ABC2A0E02780045B8B6 /* ContactDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B98ABB2A0E02780045B8B6 /* ContactDetailView.swift */; };
 		10B98AC02A0E0F420045B8B6 /* ModifyContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B98ABF2A0E0F420045B8B6 /* ModifyContactView.swift */; };
 		10B98AC32A0E13350045B8B6 /* EmojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B98AC22A0E13350045B8B6 /* EmojiPicker.swift */; };
+		10B98AC92A0E23440045B8B6 /* Phonebook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 10B98AC72A0E23440045B8B6 /* Phonebook.xcdatamodeld */; };
+		10B98ACB2A0E23BB0045B8B6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B98ACA2A0E23BB0045B8B6 /* Persistence.swift */; };
+		10B98ACF2A0E25680045B8B6 /* ContactListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B98ACE2A0E25680045B8B6 /* ContactListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,11 +28,13 @@
 		10B98A9C2A0DFB350045B8B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		10B98A9F2A0DFB350045B8B6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		10B98AAB2A0DFD1E0045B8B6 /* ContactListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListView.swift; sourceTree = "<group>"; };
-		10B98AAD2A0DFF430045B8B6 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		10B98AB32A0E018C0045B8B6 /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
 		10B98ABB2A0E02780045B8B6 /* ContactDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailView.swift; sourceTree = "<group>"; };
 		10B98ABF2A0E0F420045B8B6 /* ModifyContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyContactView.swift; sourceTree = "<group>"; };
 		10B98AC22A0E13350045B8B6 /* EmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPicker.swift; sourceTree = "<group>"; };
+		10B98AC82A0E23440045B8B6 /* Phonebook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Phonebook.xcdatamodel; sourceTree = "<group>"; };
+		10B98ACA2A0E23BB0045B8B6 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		10B98ACE2A0E25680045B8B6 /* ContactListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,12 +67,13 @@
 		10B98A972A0DFB340045B8B6 /* Phonebook-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				10B98AA72A0DFCE10045B8B6 /* Model */,
 				10B98AA62A0DFCD90045B8B6 /* View */,
 				10B98A982A0DFB340045B8B6 /* Phonebook_SwiftUIApp.swift */,
 				10B98A9A2A0DFB340045B8B6 /* ContentView.swift */,
 				10B98A9C2A0DFB350045B8B6 /* Assets.xcassets */,
 				10B98A9E2A0DFB350045B8B6 /* Preview Content */,
+				10B98AC72A0E23440045B8B6 /* Phonebook.xcdatamodeld */,
+				10B98ACA2A0E23BB0045B8B6 /* Persistence.swift */,
 			);
 			path = "Phonebook-SwiftUI";
 			sourceTree = "<group>";
@@ -91,19 +96,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		10B98AA72A0DFCE10045B8B6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				10B98AAD2A0DFF430045B8B6 /* Contact.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		10B98AAA2A0DFCFC0045B8B6 /* ContactList */ = {
 			isa = PBXGroup;
 			children = (
 				10B98AB22A0E017C0045B8B6 /* Components */,
 				10B98AAB2A0DFD1E0045B8B6 /* ContactListView.swift */,
+				10B98ACE2A0E25680045B8B6 /* ContactListViewModel.swift */,
 			);
 			path = ContactList;
 			sourceTree = "<group>";
@@ -212,13 +210,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				10B98ABC2A0E02780045B8B6 /* ContactDetailView.swift in Sources */,
-				10B98AAE2A0DFF430045B8B6 /* Contact.swift in Sources */,
 				10B98AB42A0E018C0045B8B6 /* ContactRow.swift in Sources */,
 				10B98AAC2A0DFD1E0045B8B6 /* ContactListView.swift in Sources */,
 				10B98A9B2A0DFB340045B8B6 /* ContentView.swift in Sources */,
 				10B98A992A0DFB340045B8B6 /* Phonebook_SwiftUIApp.swift in Sources */,
+				10B98ACF2A0E25680045B8B6 /* ContactListViewModel.swift in Sources */,
 				10B98AC32A0E13350045B8B6 /* EmojiPicker.swift in Sources */,
+				10B98AC92A0E23440045B8B6 /* Phonebook.xcdatamodeld in Sources */,
 				10B98AC02A0E0F420045B8B6 /* ModifyContactView.swift in Sources */,
+				10B98ACB2A0E23BB0045B8B6 /* Persistence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +419,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		10B98AC72A0E23440045B8B6 /* Phonebook.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				10B98AC82A0E23440045B8B6 /* Phonebook.xcdatamodel */,
+			);
+			currentVersion = 10B98AC82A0E23440045B8B6 /* Phonebook.xcdatamodel */;
+			path = Phonebook.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 10B98A8D2A0DFB340045B8B6 /* Project object */;
 }
