@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContactListView: View {
-    @State var present = true
+    @State var presentContactForm = false
     var body: some View {
         VStack {
             List {
@@ -28,8 +28,15 @@ struct ContactListView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Text("Add")
+                Button {
+                    presentContactForm = true
+                } label: {
+                    Image(systemName: "plus")
+                }
             }
+        }
+        .sheet(isPresented: $presentContactForm){
+            ModifyContactView()
         }
     }
 }

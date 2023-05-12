@@ -7,14 +7,6 @@
 
 import Foundation
 
-struct Team: Hashable, Codable {
-    let idTeam: String?
-    let strTeam: String?
-    let strLeague: String?
-    let strTeamBadge: String?
-    let strDescriptionEN: String?
-}
-
 struct Contact {
     let id: UUID
     let profileEmoji: String

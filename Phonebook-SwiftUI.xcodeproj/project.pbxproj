@@ -15,6 +15,8 @@
 		10B98AAE2A0DFF430045B8B6 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B98AAD2A0DFF430045B8B6 /* Contact.swift */; };
 		10B98AB42A0E018C0045B8B6 /* ContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B98AB32A0E018C0045B8B6 /* ContactRow.swift */; };
 		10B98ABC2A0E02780045B8B6 /* ContactDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B98ABB2A0E02780045B8B6 /* ContactDetailView.swift */; };
+		10B98AC02A0E0F420045B8B6 /* ModifyContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B98ABF2A0E0F420045B8B6 /* ModifyContactView.swift */; };
+		10B98AC32A0E13350045B8B6 /* EmojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B98AC22A0E13350045B8B6 /* EmojiPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		10B98AAD2A0DFF430045B8B6 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		10B98AB32A0E018C0045B8B6 /* ContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRow.swift; sourceTree = "<group>"; };
 		10B98ABB2A0E02780045B8B6 /* ContactDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailView.swift; sourceTree = "<group>"; };
+		10B98ABF2A0E0F420045B8B6 /* ModifyContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyContactView.swift; sourceTree = "<group>"; };
+		10B98AC22A0E13350045B8B6 /* EmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,7 @@
 		10B98AA62A0DFCD90045B8B6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				10B98ABD2A0E0F220045B8B6 /* ModifyContact */,
 				10B98ABA2A0E026C0045B8B6 /* ContactDetail */,
 				10B98AAA2A0DFCFC0045B8B6 /* ContactList */,
 			);
@@ -117,6 +122,23 @@
 				10B98ABB2A0E02780045B8B6 /* ContactDetailView.swift */,
 			);
 			path = ContactDetail;
+			sourceTree = "<group>";
+		};
+		10B98ABD2A0E0F220045B8B6 /* ModifyContact */ = {
+			isa = PBXGroup;
+			children = (
+				10B98AC12A0E13270045B8B6 /* Components */,
+				10B98ABF2A0E0F420045B8B6 /* ModifyContactView.swift */,
+			);
+			path = ModifyContact;
+			sourceTree = "<group>";
+		};
+		10B98AC12A0E13270045B8B6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				10B98AC22A0E13350045B8B6 /* EmojiPicker.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +217,8 @@
 				10B98AAC2A0DFD1E0045B8B6 /* ContactListView.swift in Sources */,
 				10B98A9B2A0DFB340045B8B6 /* ContentView.swift in Sources */,
 				10B98A992A0DFB340045B8B6 /* Phonebook_SwiftUIApp.swift in Sources */,
+				10B98AC32A0E13350045B8B6 /* EmojiPicker.swift in Sources */,
+				10B98AC02A0E0F420045B8B6 /* ModifyContactView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
