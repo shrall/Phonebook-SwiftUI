@@ -21,7 +21,13 @@ struct ContactListView: View {
                         }
                     }.headerProminence(.increased)
                 }
-            }.listStyle(.insetGrouped)
+            }
+            .listStyle(.insetGrouped)
+            .overlay(Group {
+                if contactListVM.contacts.isEmpty {
+                    Text("No Contacts Have Been Added")
+                }
+            })
         }
         .navigationTitle("Contacts")
         .navigationBarTitleDisplayMode(.inline)
