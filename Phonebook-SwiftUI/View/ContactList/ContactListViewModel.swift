@@ -50,13 +50,26 @@ class ContactListViewModel: ObservableObject {
         contact.notes = notes
         save()
         presentContactForm = false
+        getAllContacts()
+        resetData()
+    }
+    
+    func deleteContact(id: String) {
+        let fetchRequest: NSFetchRequest<Contact> = Contact.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        do {
+            let contact = try viewContext.fetch(fetchRequest)
+            viewContext.delete(contact[0])
+            save()
+            getAllContacts()
+        } catch {
+            fatalError("Uh, fetch problem...")
+        }
     }
     
     func save() {
         do {
             try viewContext.save()
-            getAllContacts()
-            resetData()
         } catch {
             print("Error saving")
         }

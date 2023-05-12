@@ -18,6 +18,13 @@ struct ContactListView: View {
                             NavigationLink(destination: ContactDetailView(name: contact.name!, phone: contact.phone!, emoji: contact.profileEmoji!, email: contact.email, website: contact.website, notes: contact.notes)) {
                                 ContactRow(name: contact.name!, emoji: contact.profileEmoji!, phone: contact.phone!)
                             }
+                            .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                Button(role: .destructive) {
+                                    contactListVM.deleteContact(id: contact.id!.uuidString)
+                                } label: {
+                                    Label("Delete", systemImage: "trash.fill")
+                                }
+                            }
                         }
                     }.headerProminence(.increased)
                 }
