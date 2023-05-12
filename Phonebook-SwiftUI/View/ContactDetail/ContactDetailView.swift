@@ -71,7 +71,7 @@ struct ContactDetailView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 24)
-                        .foregroundColor(email == "" ? .secondary : .primary)
+                        .foregroundColor(email == "" ? .secondary : .accentColor)
                 }
                 HStack(alignment: .center) {
                     VStack(alignment: .leading) {
@@ -90,7 +90,7 @@ struct ContactDetailView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 24)
-                        .foregroundColor(website == "" ? .secondary : .primary)
+                        .foregroundColor(website == "" ? .secondary : .accentColor)
                 }
                 HStack(alignment: .center) {
                     VStack(alignment: .leading) {
@@ -105,11 +105,6 @@ struct ContactDetailView: View {
                 }
             }
             .listStyle(.insetGrouped)
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Text("Edit")
-            }
         }
     }
 }

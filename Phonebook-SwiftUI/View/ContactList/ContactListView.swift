@@ -24,6 +24,11 @@ struct ContactListView: View {
                                 } label: {
                                     Label("Delete", systemImage: "trash.fill")
                                 }
+                                Button() {
+                                    contactListVM.editContact(contact)
+                                } label: {
+                                    Label("Edit", systemImage: "square.and.pencil")
+                                }
                             }
                         }
                     }.headerProminence(.increased)

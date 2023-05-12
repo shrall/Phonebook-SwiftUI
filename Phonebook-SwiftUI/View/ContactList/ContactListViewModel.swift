@@ -14,6 +14,8 @@ class ContactListViewModel: ObservableObject {
     @Published var contacts: [String: [Contact]] = [:]
     @Published var presentContactForm = false
     
+    @Published var modifyFormType: ModifyType = .create
+    @Published var id = UUID()
     @Published var profileEmoji = "😎"
     @Published var name = ""
     @Published var phone = ""
@@ -54,6 +56,39 @@ class ContactListViewModel: ObservableObject {
         resetData()
     }
     
+    func editContact(_ oldContact: Contact){
+        id = oldContact.id!
+        profileEmoji = oldContact.profileEmoji!
+        name = oldContact.name!
+        phone = oldContact.phone!
+        email = oldContact.email!
+        website = oldContact.website!
+        notes = oldContact.notes!
+        modifyFormType = .edit
+        presentContactForm = true
+    }
+    
+    func updateContact() {
+        let fetchRequest: NSFetchRequest<Contact> = Contact.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id.uuidString)
+        do {
+            let contact = try viewContext.fetch(fetchRequest)
+            let oldContact = contact[0]
+            oldContact.profileEmoji = profileEmoji
+            oldContact.name = name
+            oldContact.phone = phone
+            oldContact.email = email
+            oldContact.website = addHttpsPrefix(website)
+            oldContact.notes = notes
+            save()
+            presentContactForm = false
+            getAllContacts()
+            resetData()
+        } catch {
+            fatalError("Uh, fetch problem...")
+        }
+    }
+    
     func deleteContact(id: String) {
         let fetchRequest: NSFetchRequest<Contact> = Contact.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", id)
@@ -76,6 +111,8 @@ class ContactListViewModel: ObservableObject {
     }
     
     func resetData() {
+        modifyFormType = .create
+        id = UUID()
         profileEmoji = "😎"
         name = ""
         phone = ""
@@ -118,7 +155,7 @@ class ContactListViewModel: ObservableObject {
     }
     
     func addHttpsPrefix(_ urlString: String) -> String {
-        if urlString == ""{
+        if urlString == "" {
             return urlString
         }
         if urlString.contains("http://") || urlString.contains("https://") {

@@ -7,9 +7,14 @@
 
 import SwiftUI
 
+enum ModifyType {
+    case create
+    case edit
+}
+
 struct ModifyContactView: View {
     @EnvironmentObject var contactListVM: ContactListViewModel
-    
+
     var body: some View {
         NavigationView {
             VStack(spacing: 8) {
@@ -35,15 +40,15 @@ struct ModifyContactView: View {
                         .foregroundColor(.secondary)
                 }
                 List {
-                    Section{
+                    Section {
                         TextField("Name", text: $contactListVM.name)
                         TextField("Phone", text: $contactListVM.phone)
                             .keyboardType(.decimalPad)
                         TextField("E-mail", text: $contactListVM.email)
                         TextField("Website", text: $contactListVM.website)
                     }
-                    Section{
-                        VStack(alignment: .leading){
+                    Section {
+                        VStack(alignment: .leading) {
                             Text("Notes")
                                 .foregroundColor(.secondary)
                             TextField("", text: $contactListVM.notes, axis: .vertical)
@@ -52,14 +57,19 @@ struct ModifyContactView: View {
                 }
                 .listStyle(.grouped)
             }
-            .navigationTitle("Add New Contact")
+            .navigationTitle(contactListVM.modifyFormType == .create ? "Add New Contact" : "Edit Contact")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        contactListVM.addContact()
+                        switch contactListVM.modifyFormType {
+                        case .create:
+                            contactListVM.addContact()
+                        case .edit:
+                            contactListVM.updateContact()
+                        }
                     } label: {
-                        Text("Save")
+                        Text(contactListVM.modifyFormType == .create ? "Save" : "Update")
                     }
                     .disabled(!contactListVM.validateFormField())
                     .foregroundColor(!contactListVM.validateFormField() ? .secondary : .accentColor)
